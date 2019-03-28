@@ -1,0 +1,42 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  freemarker:
+    check-template-location: false
+  banner:
+    location: banner/banner.txt
+  messages:
+    basename: i18n.base
+
+#公共配置与profiles选择无关 mapperLocations指的路径是src/main/resources
+mybatis:
+  typeAliasesPackage: com.peashoot.mybatis.mybatistest.entity
+  mapperLocations: classpath:com/peashoot/mybatis/mybatistest/mapper/*.xml
+
+com:
+  peashoot:
+    name: peashoot
+    website: peashoot.000webhostapp.com
+    cookie:
+      name: cookieofpeashoot
+      lifetime: 60
+    encrypt:
+      key: Why are you so niubi??
+      iv: 12345678
+---
+
+#开发配置
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/java_mybatis?serverTimezone=GMT
+    username: root
+    password: lf0507
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 使用druid数据源
+    #type: com.alibaba.druid.pool.DruidDataSource

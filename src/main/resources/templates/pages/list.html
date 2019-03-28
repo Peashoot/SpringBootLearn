@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="pages/base">
+
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="#{page.list.title}">User List</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h2 th:text="#{page.list.head}">User List</h2>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th th:text="#{page.list.account}">Account</th>
+                        <th th:text="#{page.list.emailaddress}">EmailAddress</th>
+                        <th th:text="#{page.list.username}">UserName</th>
+                        <th th:text="#{page.list.registerdate}">RegisterDate</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody th:each="user : ${users}">
+                    <tr th:object="${user}">
+                        <td th:text="*{account}">account</td>
+                        <td th:text="${user.emailaddress}">emailaddress</td>
+                        <td th:text="${user.username}">username</td>
+                        <td th:text="*{#dates.format(resgiterdate, 'yyyy-MM-dd HH:mm:ss')}">registerdate</td>
+                        <td>
+                            <a href="edit.html" th:href="@{/edit/(id=${user.id})}" th:text="#{page.list.edit}">edit</a>
+                            <a href="delete.html" th:href="@{|/delete/${user.id}|}" th:text="#{page.list.delete}">delete</a>
+                            <!--<a th:herf="@{'/delete/' + ${user.id}}">delete</a>-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="register.html" th:href="@{/register}" th:text="#{page.list.register}">Register</a>
+        </div>
+    </div>
+</body>
+
+</html>

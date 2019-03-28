@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="pages/base">
+
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="#{page.edit.title}">Edit User</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <form action="#" th:action="@{/edit}" th:object="${user}" method="post">
+            <div><input type="text" hidden="hidden" id="id" th:field="*{id}" value="id" th:value="*{id}" /></div>
+            <div><span th:text="#{page.edit.account}">Account:</span><input type="text" id="account" th:field="*{account}" value="account" th:value="*{account}" /></div>
+            <div><span th:text="#{page.edit.username}">UserName:</span><input type="text" id="username" th:field="*{username}" value="username" th:value="*{username}" /></div>
+            <div><span th:text="#{page.edit.emailaddress}">EmailAddress:</span><input type="text" id="emailaddress" th:field="*{emailaddress}" value="emailaddress" th:value="*{emailaddress}" /></div>
+            <input type="submit" value="Save" />
+            <a href="list.html" th:href="@{/list}" th:text="#{page.edit.back}">Back to list</a>
+        </form>
+        <p th:if="${errMsg} != null" th:text="${errMsg}">Modify failure</p>
+    </div>
+</body>
+
+</html>

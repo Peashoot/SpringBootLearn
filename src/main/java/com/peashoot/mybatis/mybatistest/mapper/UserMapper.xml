@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peashoot.mybatis.mybatistest.dao.UserDao">
+  <resultMap id="BaseResultMap" type="com.peashoot.mybatis.mybatistest.entity.User">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Account" jdbcType="VARCHAR" property="account" />
+    <result column="EmailAddress" jdbcType="VARCHAR" property="emailaddress" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="ResgiterDate" jdbcType="TIMESTAMP" property="resgiterdate" />
+    <result column="ModifyDate" jdbcType="TIMESTAMP" property="modifydate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Account, EmailAddress, UserName, Password, ResgiterDate, ModifyDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="checkAccountAndPassword" resultType="java.lang.Integer">
+  select count(1)
+  from user_info 
+  where Account = #{account, jdbcType=VARCHAR} and Password = #{password, jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_info
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.peashoot.mybatis.mybatistest.entity.User">
+    insert into user_info (Id, Account, EmailAddress, 
+      UserName, Password, ResgiterDate, 
+      ModifyDate)
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{emailaddress,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{resgiterdate,jdbcType=TIMESTAMP}, 
+      #{modifydate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.peashoot.mybatis.mybatistest.entity.User">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="account != null">
+        Account,
+      </if>
+      <if test="emailaddress != null">
+        EmailAddress,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="resgiterdate != null">
+        ResgiterDate,
+      </if>
+      <if test="modifydate != null">
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="emailaddress != null">
+        #{emailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="resgiterdate != null">
+        #{resgiterdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.peashoot.mybatis.mybatistest.entity.User">
+    update user_info
+    <set>
+      <if test="account != null">
+        Account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="emailaddress != null">
+        EmailAddress = #{emailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="resgiterdate != null">
+        ResgiterDate = #{resgiterdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifydate != null">
+        ModifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.peashoot.mybatis.mybatistest.entity.User">
+    update user_info
+    set Account = #{account,jdbcType=VARCHAR},
+      EmailAddress = #{emailaddress,jdbcType=VARCHAR},
+      UserName = #{username,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      ResgiterDate = #{resgiterdate,jdbcType=TIMESTAMP},
+      ModifyDate = #{modifydate,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="exist" parameterType="java.lang.String" resultType="java.lang.Boolean">
+  select count(1)
+  from user_info
+  where Account = #{account, jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByAccount" parameterType="java.lang.String">
+  delete from user_info
+  where Account = #{account, jdbcType=VARCHAR}
+  </delete>
+  <select id="all" resultType="com.peashoot.mybatis.mybatistest.entity.User">
+  select 
+  <include refid="Base_Column_List" />
+  from user_info
+  </select>
+</mapper>

@@ -1,0 +1,21 @@
+.loginfo {
+    font-family: '黑体';
+    font-size: 35px;
+    float: left;
+    -webkit-box-reflect: below 10px -webkit-linear-gradient(transparent, transparent 50%, rgba(255, 255, 255, .5));
+}
+
+.login {
+    text-shadow: rgb(0, 174, 255) 0 0 5px;
+    color: white;
+    font-size: 60px;
+    font-family: '微软雅黑';
+    font-size: 20px;
+    word-spacing: 5px;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.login:hover {
+    text-shadow: #FF0000 0 0 10px;
+}

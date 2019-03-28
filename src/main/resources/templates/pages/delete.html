@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="pages/base">
+
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="#{page.delete.title}">User Delete</title>
+</head>
+
+<body th:object="${user}">
+    <div layout:fragment="content">
+        <p th:text="#{page.delete.question}">Are you sure to delete this record?</p>
+        <table>
+            <thead>
+                <tr>
+                    <th th:text="#{page.delete.account}">Account</th>
+                    <th th:text="#{page.delete.emailaddress}">EmailAddress</th>
+                    <th th:text="#{page.delete.username}">UserName</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="*{account}">account</td>
+                    <td th:text="*{emailaddress}">emailaddress</td>
+                    <td th:text="*{username}">username</td>
+                </tr>
+            </tbody>
+        </table>
+        <form action="#" th:action="@{/delete(id=${id})}" method="post">
+            <input type="submit" value="delete" />
+            <a href="list.html" th:href="@{/list}" th:text="#{page.delete.back}">Back to list</a>
+        </form>
+    </div>
+</body>
+
+</html>

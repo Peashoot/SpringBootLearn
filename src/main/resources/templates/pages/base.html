@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="#{page.base.title}">Base Page</title>
+    <script type="text/javascript" src="../../static/script/base.js" th:src="@{/script/base.js}"></script>
+    <script type="text/javascript" src="../../static/script/crypto-js.js" th:src="@{/script/crypto-js.js}"></script>
+    <script type="text/javascript" src="../../static/script/tripledes.js" th:src="@{/script/tripledes.js}"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/css/base.css" th:href="@{/css/base.css}" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" th:herf="@{favicon.ico}" />
+</head>
+
+<body>
+    <div>
+        <span class="loginfo" th:if="${login_account}!=null" th:text="|${login_account} #{page.base.logged}|">unlogged</span>
+        <a class="login" href="login.html" th:href="${login_account}!=null ? '/logout' : '/login'" th:text="${login_account} != null ? #{page.base.logout} : #{page.base.login}">log in</a>
+    </div>
+    <div layout:fragment="content"></div>
+    <a class="lang" href="javascript:void(0);" onclick="changeCookie('lang','en_US')">English</a>
+    <a class="lang" href="javascript:void(0);" onclick="changeCookie('lang','zh_CN')">中文</a>
+</body>
+
+</html>
